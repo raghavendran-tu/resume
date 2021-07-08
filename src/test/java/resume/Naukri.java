@@ -8,6 +8,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -15,6 +17,7 @@ import org.testng.annotations.Test;
 public class Naukri {
 	
 	public static WebDriver driver;
+	public static WebDriverWait wait;
 	@BeforeMethod
 	public static void naukri() throws InterruptedException {
 		System.setProperty("webdriver.chrome.driver", "C:\\Users\\Admin\\Downloads\\chrome\\chromedriver.exe");
@@ -66,16 +69,18 @@ public class Naukri {
 				.sendKeys("raghavendran_tu@yahoo.co.in");
 		driver.findElement(By.xpath("//input[@placeholder='Enter your password']")).sendKeys("MultiUse@89");
 		driver.findElement(By.xpath("//button[text()='Login']")).click();
-		Thread.sleep(3000);
+		
 	}
 		@Test(priority=1)
 		public static void resume() throws InterruptedException
 		{
+		wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[text()='My Naukri']\"")));
 		Actions actions = new Actions(driver);
 		actions.moveToElement(driver.findElement(By.xpath("//div[text()='My Naukri']"))).build().perform();
-		Thread.sleep(1000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Edit Profile")));
 		driver.findElement(By.linkText("Edit Profile")).click();
-		Thread.sleep(1000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("attachCV")));
 		driver.findElement(By.id("attachCV")).sendKeys("C:\\RaghavendranTUAutomation.pdf");
 
 	}
