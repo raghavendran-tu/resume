@@ -25,6 +25,7 @@ public class Naukri {
 		driver.get("https://www.naukri.com/");
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		wait = new WebDriverWait(driver, 20);
 		// driver.findElement(By.xpath("//button[@class='btn btn-primary']")).click();
 		// **attribute**
 		// driver.findElement(By.xpath("//input[text()='Home']")).click(); **text**
@@ -69,94 +70,93 @@ public class Naukri {
 				.sendKeys("raghavendran_tu@yahoo.co.in");
 		driver.findElement(By.xpath("//input[@placeholder='Enter your password']")).sendKeys("MultiUse@89");
 		driver.findElement(By.xpath("//button[text()='Login']")).click();
-		
+		Thread.sleep(2000);
 	}
 		@Test(priority=1)
 		public static void resume() throws InterruptedException
 		{
-		wait = new WebDriverWait(driver, 30);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[text()='My Naukri']\"")));
+		
 		Actions actions = new Actions(driver);
 		actions.moveToElement(driver.findElement(By.xpath("//div[text()='My Naukri']"))).build().perform();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Edit Profile")));
+		Thread.sleep(2000);
 		driver.findElement(By.linkText("Edit Profile")).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("attachCV")));
+		Thread.sleep(2000);
 		driver.findElement(By.id("attachCV")).sendKeys("C:\\RaghavendranTUAutomation.pdf");
 
-	}
-	
-		@Test(priority=2)
-		public static void apply() throws InterruptedException
-		{
-			driver.findElement(By.id("qsb-keyskill-sugg")).sendKeys("automation test lead 9years");
-			driver.findElement(By.id("qsb-location-sugg")).sendKeys("chennai,bangalore, Hyderabad/Secunderabad, ");
-			driver.findElement(By.xpath("//button[text()='SEARCH']")).click();
-			driver.findElement(By.xpath("//div[@class='jobTupleHeader']")).click();
-			String mainWindow = driver.getWindowHandle();
-			Thread.sleep(3000);
-			Set<String> windowHandles = driver.getWindowHandles();
-			ArrayList<String> list = new ArrayList<String>();
-			list.addAll(windowHandles);
-			for (int i = 0; i < list.size(); i++) {
-				if (!mainWindow.equals(list.get(i))) {
-					driver.switchTo().window(list.get(i));
-					}
-
-			}
-			driver.findElement(By.xpath("//button[text()='Apply']")).click();
-			driver.switchTo().window(mainWindow);
-		
-			}
-		
-		@Test(priority=3)
-		public static void apply2() throws InterruptedException
-		{
-			driver.findElement(By.id("qsb-keyskill-sugg")).sendKeys("automation test lead 9years");
-			driver.findElement(By.id("qsb-location-sugg")).sendKeys("chennai,bangalore, Hyderabad/Secunderabad, ");
-			driver.findElement(By.xpath("//button[text()='SEARCH']")).click();
-			driver.findElement(By.xpath("//article[@class='jobTuple bgWhite br4 mb-8']/parent::div//following-sibling::article[@class='jobTuple bgWhite br4 mb-8']")).click();
-			String mainWindow = driver.getWindowHandle();
-			Thread.sleep(3000);
-			Set<String> windowHandles = driver.getWindowHandles();
-			ArrayList<String> list = new ArrayList<String>();
-			list.addAll(windowHandles);
-			for (int i = 0; i < list.size(); i++) {
-				if (!mainWindow.equals(list.get(i))) {
-					driver.switchTo().window(list.get(i));
-					}
-
-			}
-			driver.findElement(By.xpath("//button[text()='Apply']")).click();
-			driver.switchTo().window(mainWindow);
-		}
-		
-		@Test(priority=4)
-		public static void apply21() throws InterruptedException
-		{
-			driver.findElement(By.id("qsb-keyskill-sugg")).sendKeys("automation test lead 9years");
-			driver.findElement(By.id("qsb-location-sugg")).sendKeys("chennai,bangalore, Hyderabad/Secunderabad, ");
-			driver.findElement(By.xpath("//button[text()='SEARCH']")).click();
-			driver.findElement(By.xpath("//article[@class='jobTuple bgWhite br4 mb-8']/parent::div//following-sibling::article[@class='jobTuple bgWhite br4 mb-8']//following-sibling::article[@class='jobTuple bgWhite br4 mb-8']")).click();
-			String mainWindow = driver.getWindowHandle();
-			Thread.sleep(3000);
-			Set<String> windowHandles = driver.getWindowHandles();
-			ArrayList<String> list = new ArrayList<String>();
-			list.addAll(windowHandles);
-			for (int i = 0; i < list.size(); i++) {
-				if (!mainWindow.equals(list.get(i))) {
-					driver.switchTo().window(list.get(i));
-					}
-
-			}
-			driver.findElement(By.xpath("//button[text()='Apply']")).click();
-			driver.switchTo().window(mainWindow);
-		}
-		@AfterMethod
-		public void close()
-		{
-			driver.close();
-		}
-		}
-
+	} }
+//	
+//		@Test(priority=2)
+//		public static void apply() throws InterruptedException
+//		{
+//			driver.findElement(By.id("qsb-keyskill-sugg")).sendKeys("automation test lead 9years");
+//			driver.findElement(By.id("qsb-location-sugg")).sendKeys("chennai,bangalore, Hyderabad/Secunderabad, ");
+//			driver.findElement(By.xpath("//button[text()='SEARCH']")).click();
+//			driver.findElement(By.xpath("//div[@class='jobTupleHeader']")).click();
+//			String mainWindow = driver.getWindowHandle();
+//			Thread.sleep(3000);
+//			Set<String> windowHandles = driver.getWindowHandles();
+//			ArrayList<String> list = new ArrayList<String>();
+//			list.addAll(windowHandles);
+//			for (int i = 0; i < list.size(); i++) {
+//				if (!mainWindow.equals(list.get(i))) {
+//					driver.switchTo().window(list.get(i));
+//					}
+//
+//			}
+//			driver.findElement(By.xpath("//button[text()='Apply']")).click();
+//			driver.switchTo().window(mainWindow);
+//		
+//			}
+//		
+//		@Test(priority=3)
+//		public static void apply2() throws InterruptedException
+//		{
+//			driver.findElement(By.id("qsb-keyskill-sugg")).sendKeys("automation test lead 9years");
+//			driver.findElement(By.id("qsb-location-sugg")).sendKeys("chennai,bangalore, Hyderabad/Secunderabad, ");
+//			driver.findElement(By.xpath("//button[text()='SEARCH']")).click();
+//			driver.findElement(By.xpath("//article[@class='jobTuple bgWhite br4 mb-8']/parent::div//following-sibling::article[@class='jobTuple bgWhite br4 mb-8']")).click();
+//			String mainWindow = driver.getWindowHandle();
+//			Thread.sleep(3000);
+//			Set<String> windowHandles = driver.getWindowHandles();
+//			ArrayList<String> list = new ArrayList<String>();
+//			list.addAll(windowHandles);
+//			for (int i = 0; i < list.size(); i++) {
+//				if (!mainWindow.equals(list.get(i))) {
+//					driver.switchTo().window(list.get(i));
+//					}
+//
+//			}
+//			driver.findElement(By.xpath("//button[text()='Apply']")).click();
+//			driver.switchTo().window(mainWindow);
+//		}
+//		
+//		@Test(priority=4)
+//		public static void apply21() throws InterruptedException
+//		{
+//			driver.findElement(By.id("qsb-keyskill-sugg")).sendKeys("automation test lead 9years");
+//			driver.findElement(By.id("qsb-location-sugg")).sendKeys("chennai,bangalore, Hyderabad/Secunderabad, ");
+//			driver.findElement(By.xpath("//button[text()='SEARCH']")).click();
+//			driver.findElement(By.xpath("//article[@class='jobTuple bgWhite br4 mb-8']/parent::div//following-sibling::article[@class='jobTuple bgWhite br4 mb-8']//following-sibling::article[@class='jobTuple bgWhite br4 mb-8']")).click();
+//			String mainWindow = driver.getWindowHandle();
+//			Thread.sleep(3000);
+//			Set<String> windowHandles = driver.getWindowHandles();
+//			ArrayList<String> list = new ArrayList<String>();
+//			list.addAll(windowHandles);
+//			for (int i = 0; i < list.size(); i++) {
+//				if (!mainWindow.equals(list.get(i))) {
+//					driver.switchTo().window(list.get(i));
+//					}
+//
+//			}
+//			driver.findElement(By.xpath("//button[text()='Apply']")).click();
+//			driver.switchTo().window(mainWindow);
+//		}
+//		@AfterMethod
+//		public void close()
+//		{
+//			driver.close();
+//		}
+//		}
+//
 
 
