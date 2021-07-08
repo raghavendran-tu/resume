@@ -69,11 +69,13 @@ public class Naukri {
 		Thread.sleep(3000);
 	}
 		@Test(priority=1)
-		public static void resume()
+		public static void resume() throws InterruptedException
 		{
 		Actions actions = new Actions(driver);
 		actions.moveToElement(driver.findElement(By.xpath("//div[text()='My Naukri']"))).build().perform();
+		Thread.sleep(1000);
 		driver.findElement(By.linkText("Edit Profile")).click();
+		Thread.sleep(1000);
 		driver.findElement(By.id("attachCV")).sendKeys("C:\\RaghavendranTUAutomation.pdf");
 
 	}
